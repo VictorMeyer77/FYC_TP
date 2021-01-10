@@ -15,7 +15,7 @@ object Main {
     val spotifyApi: SpotifyApi = new SpotifyApi(conf, "7dGJo4pcD2V6oG8kP0tJRR")
     val gson: Gson = new Gson()
 
-    writeJson(gson.toJson(spotifyApi.trackListRequest), "tracklst")
+    writeJson(gson.toJson(spotifyApi.trackListRequest), "tracklist")
     writeJson(gson.toJson(spotifyApi.artistsRequest), "artist")
 
 
