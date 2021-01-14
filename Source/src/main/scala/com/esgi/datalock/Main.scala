@@ -31,10 +31,10 @@ object Main {
 
   }
 
-  def writeJson(json: String, fileName: String): Unit ={
+  def writeJson(json: String, dirName: String): Unit ={
 
     val now: String = Calendar.getInstance().getTime.getTime.toString
-    val output: PrintWriter = new PrintWriter(new File("output/" + fileName + "_" + now + ".json"))
+    val output: PrintWriter = new PrintWriter(new File("output/" + dirName + "/" + now + ".json"))
     output.write(json)
     output.close()
 
