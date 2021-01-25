@@ -60,7 +60,7 @@ object Checkpoint {
 
         if(fileName != ".gitignore") {
           if (fileName.replace(".json", "").toLong > flag)
-            filesToProcess = filesPath + "/" + file :: filesToProcess
+            filesToProcess = file.toString :: filesToProcess
         }
       }
     )
@@ -71,18 +71,22 @@ object Checkpoint {
 
   def updateCheckpoint(table: String, filesToProcess: List[String]): Unit ={
 
-    val sortedList: List[String] = filesToProcess.sorted
-    val lastFile: String = sortedList.last
-    val date: Long = lastFile.split("/").last.replace(".json", "").toLong
-    val flag: Flag = Flag(date)
-    val gson: Gson = new Gson()
-    val jsonContent: String = gson.toJson(flag)
-    val file: File = new File("checkpoints/" + table + "/flag.json")
-    file.createNewFile()
-    val bufferedFile: BufferedWriter = new BufferedWriter(new FileWriter(file))
-    bufferedFile.write(jsonContent)
-    bufferedFile.close()
 
+    if(filesToProcess.nonEmpty){
+
+      val sortedList: List[String] = filesToProcess.sorted
+      val lastFile: String = sortedList.last
+      val date: Long = lastFile.split("/").last.replace(".json", "").toLong
+      val flag: Flag = Flag(date)
+      val gson: Gson = new Gson()
+      val jsonContent: String = gson.toJson(flag)
+      val file: File = new File("checkpoints/" + table + "/flag.json")
+      file.createNewFile()
+      val bufferedFile: BufferedWriter = new BufferedWriter(new FileWriter(file))
+      bufferedFile.write(jsonContent)
+      bufferedFile.close()
+
+    }
   }
 
 }
