@@ -4,6 +4,13 @@ import com.esgi.datalock.delta.{Ranking, Storer, TablesCreate}
 import com.esgi.datalock.utils.Checkpoint
 import org.apache.spark.sql.SparkSession
 
+import org.apache.hudi.QuickstartUtils._
+import scala.collection.JavaConversions._
+import org.apache.spark.sql.SaveMode._
+import org.apache.hudi.DataSourceReadOptions._
+import org.apache.hudi.DataSourceWriteOptions._
+import org.apache.hudi.config.HoodieWriteConfig._
+
 object Main {
 
   def main(args: Array[String]): Unit ={
@@ -11,8 +18,7 @@ object Main {
     val spark: SparkSession = SparkSession
       .builder()
       .appName("Artist Tracking Hudi")
-      .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
-      .config("spark.master", "local")
+      .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
       .getOrCreate()
 
     //TablesCreate.run(spark)

@@ -73,10 +73,11 @@ class Storer(spark: SparkSession) {
       val renameColDf: DataFrame = renameArtistCol(formatColDf)
       val finalDf: DataFrame = addDateMajCol(renameColDf)
       val tableName : String = "artist"
-      val partitionPath :String = "../hudi/artist" 
+      val partitionPath :String = "../hudi/artist"
+      val basePath = "/home/littlesoap/Document/Cours/fyc/warehouse/hudi/CasPratique/FYC_TP/Hudi/warehouse/hudi" 
 
       finalDf.write
-        .mode("append")
+        .mode("Overwrite")
         .format("hudi")
         .partitionBy("date_maj")
         .options(getQuickstartWriteConfigs)
@@ -84,7 +85,7 @@ class Storer(spark: SparkSession) {
         .option(RECORDKEY_FIELD_OPT_KEY, "uuid")
         .option(PARTITIONPATH_FIELD_OPT_KEY, "partitionpath")
         .option(TABLE_NAME, tableName)
-        .save("warehouse/hudi/artist_tracking")
+        .save(basePath)
 
     }
     else if(table == "tracklist"){
@@ -96,9 +97,10 @@ class Storer(spark: SparkSession) {
       val finalDf: DataFrame = addDateMajCol(renameColDf)
       val tableName : String = "tracklist"
       val partitionPath :String = "../hudi/traclist"
+      val basePath = "/home/littlesoap/Document/Cours/fyc/warehouse/hudi/CasPratique/FYC_TP/Hudi/warehouse/hudi"
 
       finalDf.write
-        .mode("append")
+        .mode("Overwrite")
         .format("hudi")
         .partitionBy("date_maj")
         .options(getQuickstartWriteConfigs)
@@ -106,7 +108,7 @@ class Storer(spark: SparkSession) {
         .option(RECORDKEY_FIELD_OPT_KEY, "uuid")
         .option(PARTITIONPATH_FIELD_OPT_KEY, "partitionpath")
         .option(TABLE_NAME, tableName)
-        .save("warehouse/delta/music_tracking")
+        .save(basePath)
 
     }
   }
