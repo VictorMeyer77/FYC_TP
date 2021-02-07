@@ -19,6 +19,13 @@ class Storer(spark: SparkSession) {
 
   }
 
+  def addUid(df: DataFrame): DataFrame ={
+
+    import spark.implicits._
+    df.withColumn("uuid", expr("uuid()"))
+
+  }
+
   // artist table functions
 
   def renameArtistCol(df: DataFrame): DataFrame ={
@@ -61,8 +68,29 @@ class Storer(spark: SparkSession) {
 
   }
 
+  def countTopTrackByArtist(df: DataFrame): Unit ={
+
+    val filterDf: DataFrame = df.filter("popularity >= 75")
+      .groupBy("artist_id")
+      .count()
+      .withColumnRenamed("count", "nb_top_track")
+
+    val finalDf: DataFrame = addUid(filterDf)
+
+    finalDf.write
+      .format("hudi")
+      .option(PRECOMBINE_FIELD_OPT_KEY, "artist_id")
+      .option(RECORDKEY_FIELD_OPT_KEY, "uuid")
+      .option(PARTITIONPATH_FIELD_OPT_KEY, "partitionpath")
+      .option(TABLE_NAME, "top_track_by_artist")
+      .mode(Overwrite)
+      .save("file:///tmp/hudi/top_track_by_artist")
+
+  }
+
   def store(filePath: String, table: String): Unit ={
 
+    val basePath = "file:///tmp/hudi/"
     val df = spark.read
       .format("org.apache.spark.sql.execution.datasources.v2.json.JsonDataSourceV2")
       .load(filePath)
@@ -71,21 +99,16 @@ class Storer(spark: SparkSession) {
 
       val formatColDf: DataFrame = explodeFollowers(df)
       val renameColDf: DataFrame = renameArtistCol(formatColDf)
-      val finalDf: DataFrame = addDateMajCol(renameColDf)
-      val tableName : String = "artist"
-      val partitionPath :String = "../hudi/artist"
-      val basePath = "/home/littlesoap/Document/Cours/fyc/warehouse/hudi/CasPratique/FYC_TP/Hudi/warehouse/hudi" 
+      val finalDf: DataFrame = addUid(addDateMajCol(renameColDf))
 
       finalDf.write
-        .mode("Overwrite")
         .format("hudi")
-        .partitionBy("date_maj")
-        .options(getQuickstartWriteConfigs)
-        .option(PRECOMBINE_FIELD_OPT_KEY, "ts")
+        .option(PRECOMBINE_FIELD_OPT_KEY, "date_maj")
         .option(RECORDKEY_FIELD_OPT_KEY, "uuid")
         .option(PARTITIONPATH_FIELD_OPT_KEY, "partitionpath")
-        .option(TABLE_NAME, tableName)
-        .save(basePath)
+        .option(TABLE_NAME, table)
+        .mode(Append)
+        .save(basePath + table)
 
     }
     else if(table == "tracklist"){
@@ -94,21 +117,18 @@ class Storer(spark: SparkSession) {
       val fullDf: DataFrame = convertMillis(formatColDf)
       val cleanDf: DataFrame = removeColumns(fullDf)
       val renameColDf: DataFrame = renameTrackCol(cleanDf)
-      val finalDf: DataFrame = addDateMajCol(renameColDf)
-      val tableName : String = "tracklist"
-      val partitionPath :String = "../hudi/traclist"
-      val basePath = "/home/littlesoap/Document/Cours/fyc/warehouse/hudi/CasPratique/FYC_TP/Hudi/warehouse/hudi"
+      val finalDf: DataFrame = addUid(addDateMajCol(renameColDf))
 
       finalDf.write
-        .mode("Overwrite")
         .format("hudi")
-        .partitionBy("date_maj")
-        .options(getQuickstartWriteConfigs)
-        .option(PRECOMBINE_FIELD_OPT_KEY, "ts")
+        .option(PRECOMBINE_FIELD_OPT_KEY, "date_maj")
         .option(RECORDKEY_FIELD_OPT_KEY, "uuid")
         .option(PARTITIONPATH_FIELD_OPT_KEY, "partitionpath")
-        .option(TABLE_NAME, tableName)
-        .save(basePath)
+        .option(TABLE_NAME, table)
+        .mode(Append)
+        .save(basePath + table)
+
+      countTopTrackByArtist(finalDf)
 
     }
   }

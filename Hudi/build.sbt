@@ -2,11 +2,12 @@ name := "Hudi"
 
 version := "0.1"
 
-scalaVersion := "2.11.0"
+scalaVersion := "2.12.2"
 
 libraryDependencies += "org.apache.spark" %% "spark-core" % "2.4.7" % "compile"
 libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.4.7" % "compile"
-libraryDependencies += "org.apache.hudi" % "hudi-spark" % "0.5.0-incubating"
+libraryDependencies += "org.apache.hudi" %% "hudi-spark-bundle" % "0.7.0" % "compile"
+libraryDependencies += "org.apache.spark" %% "spark-avro" % "2.4.7" % "compile"
 
 assemblyMergeStrategy in assembly := {
   case "META-INF/services/org.apache.spark.sql.sources.DataSourceRegister" => MergeStrategy.concat
