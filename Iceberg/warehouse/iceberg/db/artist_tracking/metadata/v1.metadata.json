@@ -1,0 +1,64 @@
+{
+  "format-version" : 1,
+  "table-uuid" : "b26792ab-d49f-4758-93f2-cb46648b2cb1",
+  "location" : "warehouse/iceberg/db/artist_tracking",
+  "last-updated-ms" : 1612639186903,
+  "last-column-id" : 5,
+  "schema" : {
+    "type" : "struct",
+    "fields" : [ {
+      "id" : 1,
+      "name" : "artist_id",
+      "required" : false,
+      "type" : "string"
+    }, {
+      "id" : 2,
+      "name" : "artist_name",
+      "required" : false,
+      "type" : "string"
+    }, {
+      "id" : 3,
+      "name" : "nb_fan",
+      "required" : false,
+      "type" : "long"
+    }, {
+      "id" : 4,
+      "name" : "popularity",
+      "required" : false,
+      "type" : "long"
+    }, {
+      "id" : 5,
+      "name" : "date_maj",
+      "required" : false,
+      "type" : "date"
+    } ]
+  },
+  "partition-spec" : [ {
+    "name" : "date_maj",
+    "transform" : "identity",
+    "source-id" : 5,
+    "field-id" : 1000
+  } ],
+  "default-spec-id" : 0,
+  "partition-specs" : [ {
+    "spec-id" : 0,
+    "fields" : [ {
+      "name" : "date_maj",
+      "transform" : "identity",
+      "source-id" : 5,
+      "field-id" : 1000
+    } ]
+  } ],
+  "default-sort-order-id" : 0,
+  "sort-orders" : [ {
+    "order-id" : 0,
+    "fields" : [ ]
+  } ],
+  "properties" : {
+    "owner" : "littlesoap"
+  },
+  "current-snapshot-id" : -1,
+  "snapshots" : [ ],
+  "snapshot-log" : [ ],
+  "metadata-log" : [ ]
+}

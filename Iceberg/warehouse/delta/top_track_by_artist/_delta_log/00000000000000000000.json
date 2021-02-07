@@ -1,0 +1,3 @@
+{"commitInfo":{"timestamp":1612631285769,"operation":"CREATE TABLE","operationParameters":{"isManaged":"false","description":null,"partitionBy":"[]","properties":"{}"},"isBlindAppend":true,"operationMetrics":{}}}
+{"protocol":{"minReaderVersion":1,"minWriterVersion":2}}
+{"metaData":{"id":"670d3b51-bacb-4a73-9358-d8838792a7d1","format":{"provider":"parquet","options":{}},"schemaString":"{\"type\":\"struct\",\"fields\":[{\"name\":\"artist_id\",\"type\":\"string\",\"nullable\":true,\"metadata\":{}},{\"name\":\"nb_top_track\",\"type\":\"long\",\"nullable\":true,\"metadata\":{}}]}","partitionColumns":[],"configuration":{},"createdTime":1612631285758}}

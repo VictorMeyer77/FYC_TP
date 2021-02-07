@@ -1,0 +1,92 @@
+{
+  "format-version" : 1,
+  "table-uuid" : "b8425e08-d26f-4609-86d7-63af46be7ddc",
+  "location" : "warehouse/iceberg/db/music_tracking",
+  "last-updated-ms" : 1612727682532,
+  "last-column-id" : 6,
+  "schema" : {
+    "type" : "struct",
+    "fields" : [ {
+      "id" : 1,
+      "name" : "music_id",
+      "required" : false,
+      "type" : "string"
+    }, {
+      "id" : 2,
+      "name" : "artist_id",
+      "required" : false,
+      "type" : "string"
+    }, {
+      "id" : 3,
+      "name" : "name",
+      "required" : false,
+      "type" : "string"
+    }, {
+      "id" : 4,
+      "name" : "duration",
+      "required" : false,
+      "type" : "double"
+    }, {
+      "id" : 5,
+      "name" : "popularity",
+      "required" : false,
+      "type" : "long"
+    }, {
+      "id" : 6,
+      "name" : "date_maj",
+      "required" : false,
+      "type" : "date"
+    } ]
+  },
+  "partition-spec" : [ {
+    "name" : "date_maj",
+    "transform" : "identity",
+    "source-id" : 6,
+    "field-id" : 1000
+  } ],
+  "default-spec-id" : 0,
+  "partition-specs" : [ {
+    "spec-id" : 0,
+    "fields" : [ {
+      "name" : "date_maj",
+      "transform" : "identity",
+      "source-id" : 6,
+      "field-id" : 1000
+    } ]
+  } ],
+  "default-sort-order-id" : 0,
+  "sort-orders" : [ {
+    "order-id" : 0,
+    "fields" : [ ]
+  } ],
+  "properties" : {
+    "owner" : "littlesoap"
+  },
+  "current-snapshot-id" : 2775428815041446945,
+  "snapshots" : [ {
+    "snapshot-id" : 2775428815041446945,
+    "timestamp-ms" : 1612727682532,
+    "summary" : {
+      "operation" : "append",
+      "spark.app.id" : "local-1612727677177",
+      "added-data-files" : "1",
+      "added-records" : "15",
+      "added-files-size" : "2810",
+      "changed-partition-count" : "1",
+      "total-records" : "15",
+      "total-data-files" : "1",
+      "total-delete-files" : "0",
+      "total-position-deletes" : "0",
+      "total-equality-deletes" : "0"
+    },
+    "manifest-list" : "warehouse/iceberg/db/music_tracking/metadata/snap-2775428815041446945-1-dc0b3429-5091-4957-84af-7b089f63d7d4.avro"
+  } ],
+  "snapshot-log" : [ {
+    "timestamp-ms" : 1612727682532,
+    "snapshot-id" : 2775428815041446945
+  } ],
+  "metadata-log" : [ {
+    "timestamp-ms" : 1612639187063,
+    "metadata-file" : "warehouse/iceberg/db/music_tracking/metadata/v1.metadata.json"
+  } ]
+}

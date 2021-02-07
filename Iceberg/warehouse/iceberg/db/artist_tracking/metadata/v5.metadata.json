@@ -1,0 +1,159 @@
+{
+  "format-version" : 1,
+  "table-uuid" : "b26792ab-d49f-4758-93f2-cb46648b2cb1",
+  "location" : "warehouse/iceberg/db/artist_tracking",
+  "last-updated-ms" : 1612734245255,
+  "last-column-id" : 5,
+  "schema" : {
+    "type" : "struct",
+    "fields" : [ {
+      "id" : 1,
+      "name" : "artist_id",
+      "required" : false,
+      "type" : "string"
+    }, {
+      "id" : 2,
+      "name" : "artist_name",
+      "required" : false,
+      "type" : "string"
+    }, {
+      "id" : 3,
+      "name" : "nb_fan",
+      "required" : false,
+      "type" : "long"
+    }, {
+      "id" : 4,
+      "name" : "popularity",
+      "required" : false,
+      "type" : "long"
+    }, {
+      "id" : 5,
+      "name" : "date_maj",
+      "required" : false,
+      "type" : "date"
+    } ]
+  },
+  "partition-spec" : [ {
+    "name" : "date_maj",
+    "transform" : "identity",
+    "source-id" : 5,
+    "field-id" : 1000
+  } ],
+  "default-spec-id" : 0,
+  "partition-specs" : [ {
+    "spec-id" : 0,
+    "fields" : [ {
+      "name" : "date_maj",
+      "transform" : "identity",
+      "source-id" : 5,
+      "field-id" : 1000
+    } ]
+  } ],
+  "default-sort-order-id" : 0,
+  "sort-orders" : [ {
+    "order-id" : 0,
+    "fields" : [ ]
+  } ],
+  "properties" : {
+    "owner" : "littlesoap"
+  },
+  "current-snapshot-id" : 1881449382283815626,
+  "snapshots" : [ {
+    "snapshot-id" : 8862681082500382402,
+    "timestamp-ms" : 1612727682059,
+    "summary" : {
+      "operation" : "append",
+      "spark.app.id" : "local-1612727677177",
+      "added-data-files" : "1",
+      "added-records" : "1",
+      "added-files-size" : "1620",
+      "changed-partition-count" : "1",
+      "total-records" : "1",
+      "total-data-files" : "1",
+      "total-delete-files" : "0",
+      "total-position-deletes" : "0",
+      "total-equality-deletes" : "0"
+    },
+    "manifest-list" : "warehouse/iceberg/db/artist_tracking/metadata/snap-8862681082500382402-1-f16dfd85-2ab2-4a5b-a6db-935ab227df87.avro"
+  }, {
+    "snapshot-id" : 5319449727349954678,
+    "parent-snapshot-id" : 8862681082500382402,
+    "timestamp-ms" : 1612734244691,
+    "summary" : {
+      "operation" : "append",
+      "spark.app.id" : "local-1612734238818",
+      "added-data-files" : "1",
+      "added-records" : "1",
+      "added-files-size" : "1619",
+      "changed-partition-count" : "1",
+      "total-records" : "2",
+      "total-data-files" : "2",
+      "total-delete-files" : "0",
+      "total-position-deletes" : "0",
+      "total-equality-deletes" : "0"
+    },
+    "manifest-list" : "warehouse/iceberg/db/artist_tracking/metadata/snap-5319449727349954678-1-afac4dad-d72a-4382-8281-4f8a61982c13.avro"
+  }, {
+    "snapshot-id" : 5637722700944562074,
+    "parent-snapshot-id" : 5319449727349954678,
+    "timestamp-ms" : 1612734244997,
+    "summary" : {
+      "operation" : "append",
+      "spark.app.id" : "local-1612734238818",
+      "added-data-files" : "1",
+      "added-records" : "1",
+      "added-files-size" : "1619",
+      "changed-partition-count" : "1",
+      "total-records" : "3",
+      "total-data-files" : "3",
+      "total-delete-files" : "0",
+      "total-position-deletes" : "0",
+      "total-equality-deletes" : "0"
+    },
+    "manifest-list" : "warehouse/iceberg/db/artist_tracking/metadata/snap-5637722700944562074-1-9dcc321f-a209-4edf-ae2c-a5855856bb56.avro"
+  }, {
+    "snapshot-id" : 1881449382283815626,
+    "parent-snapshot-id" : 5637722700944562074,
+    "timestamp-ms" : 1612734245255,
+    "summary" : {
+      "operation" : "append",
+      "spark.app.id" : "local-1612734238818",
+      "added-data-files" : "1",
+      "added-records" : "1",
+      "added-files-size" : "1620",
+      "changed-partition-count" : "1",
+      "total-records" : "4",
+      "total-data-files" : "4",
+      "total-delete-files" : "0",
+      "total-position-deletes" : "0",
+      "total-equality-deletes" : "0"
+    },
+    "manifest-list" : "warehouse/iceberg/db/artist_tracking/metadata/snap-1881449382283815626-1-4f511813-438b-4e4a-a4da-503a49c555e1.avro"
+  } ],
+  "snapshot-log" : [ {
+    "timestamp-ms" : 1612727682059,
+    "snapshot-id" : 8862681082500382402
+  }, {
+    "timestamp-ms" : 1612734244691,
+    "snapshot-id" : 5319449727349954678
+  }, {
+    "timestamp-ms" : 1612734244997,
+    "snapshot-id" : 5637722700944562074
+  }, {
+    "timestamp-ms" : 1612734245255,
+    "snapshot-id" : 1881449382283815626
+  } ],
+  "metadata-log" : [ {
+    "timestamp-ms" : 1612639186903,
+    "metadata-file" : "warehouse/iceberg/db/artist_tracking/metadata/v1.metadata.json"
+  }, {
+    "timestamp-ms" : 1612727682059,
+    "metadata-file" : "warehouse/iceberg/db/artist_tracking/metadata/v2.metadata.json"
+  }, {
+    "timestamp-ms" : 1612734244691,
+    "metadata-file" : "warehouse/iceberg/db/artist_tracking/metadata/v3.metadata.json"
+  }, {
+    "timestamp-ms" : 1612734244997,
+    "metadata-file" : "warehouse/iceberg/db/artist_tracking/metadata/v4.metadata.json"
+  } ]
+}

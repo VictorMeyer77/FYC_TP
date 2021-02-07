@@ -1,0 +1,69 @@
+{
+  "format-version" : 1,
+  "table-uuid" : "b8425e08-d26f-4609-86d7-63af46be7ddc",
+  "location" : "warehouse/iceberg/db/music_tracking",
+  "last-updated-ms" : 1612639187063,
+  "last-column-id" : 6,
+  "schema" : {
+    "type" : "struct",
+    "fields" : [ {
+      "id" : 1,
+      "name" : "music_id",
+      "required" : false,
+      "type" : "string"
+    }, {
+      "id" : 2,
+      "name" : "artist_id",
+      "required" : false,
+      "type" : "string"
+    }, {
+      "id" : 3,
+      "name" : "name",
+      "required" : false,
+      "type" : "string"
+    }, {
+      "id" : 4,
+      "name" : "duration",
+      "required" : false,
+      "type" : "double"
+    }, {
+      "id" : 5,
+      "name" : "popularity",
+      "required" : false,
+      "type" : "long"
+    }, {
+      "id" : 6,
+      "name" : "date_maj",
+      "required" : false,
+      "type" : "date"
+    } ]
+  },
+  "partition-spec" : [ {
+    "name" : "date_maj",
+    "transform" : "identity",
+    "source-id" : 6,
+    "field-id" : 1000
+  } ],
+  "default-spec-id" : 0,
+  "partition-specs" : [ {
+    "spec-id" : 0,
+    "fields" : [ {
+      "name" : "date_maj",
+      "transform" : "identity",
+      "source-id" : 6,
+      "field-id" : 1000
+    } ]
+  } ],
+  "default-sort-order-id" : 0,
+  "sort-orders" : [ {
+    "order-id" : 0,
+    "fields" : [ ]
+  } ],
+  "properties" : {
+    "owner" : "littlesoap"
+  },
+  "current-snapshot-id" : -1,
+  "snapshots" : [ ],
+  "snapshot-log" : [ ],
+  "metadata-log" : [ ]
+}
