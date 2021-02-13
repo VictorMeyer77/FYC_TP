@@ -4,7 +4,7 @@
 
 #### Prérequis
 
-Avoir lancer au moins une fois le programme source.
+Avoir lancé au moins une fois le programme source.
 
 #### Lancement de la stream
 
