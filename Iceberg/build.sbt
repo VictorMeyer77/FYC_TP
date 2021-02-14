@@ -1,4 +1,4 @@
-name := "DeltaLake"
+name := "Iceberg"
 
 version := "0.1"
 
