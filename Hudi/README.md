@@ -1,16 +1,16 @@
 
-    # SPOTIFY ARTIST TRACKING
+# SPOTIFY ARTIST TRACKING
 
-    ## APACHE HUDI
+## APACHE HUDI
 
-    #### Prérequis
+#### Prérequis
 
-    Avoir lancé au moins une fois le programme Source pour récupérer les données à partir de l'API Spotify
+Avoir lancé au moins une fois le programme Source pour récupérer les données à partir de l'API Spotify
 
-    #### Construction du projet
+#### Construction du projet
 
-    `sbt clean assembly`
+`sbt clean assembly`
 
-    #### Lancement du programme de ranking
-    
-    `spark-submit   --class com.esgi.datalock.Main target/scala-2.12/Hudi-assembly-0.1.jar  "../Source/output"</mark>`
+#### Lancement du programme de ranking
+
+`spark-submit   --class com.esgi.datalock.Main target/scala-2.12/Hudi-assembly-0.1.jar  "../Source/output"`
